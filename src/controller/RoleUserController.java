@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.scene.control.ComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import models.Role;
 
 /**
@@ -14,8 +17,8 @@ import models.Role;
 public class RoleUserController {
     MySQLConexion conexion;
 
-    public RoleUserController(MySQLConexion conexion, Role role) {
-        this.conexion = conexion;
+    public RoleUserController() {
+        conexion = new MySQLConexion();
     }
 
     public void insert(Role role) {

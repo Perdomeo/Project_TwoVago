@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import models.User;
 
 /**
@@ -15,7 +17,7 @@ public class UserController {
     MySQLConexion conexion;
 
     public UserController() {
-        this.conexion = new MySQLConexion();
+        conexion = new MySQLConexion();
     }
     
     public void insert(User user) {
@@ -160,5 +162,33 @@ public class UserController {
             System.out.println("An error occurred while making the selection in the database");
             e.printStackTrace();
         }
+    }
+    
+    public void roleList (JComboBox rol){
+        DefaultComboBoxModel model= new DefaultComboBoxModel();
+        // Establishes the connection to the database
+        try (Connection conn = conexion.mySQLConexion()) {
+            // Verify if the connection was successful
+            if (conn != null) {
+                // Prepares the SQL query to insert data
+                String selectSQL = "SELECT * FROM Roles";
+                try (PreparedStatement pstmt = conn.prepareStatement(selectSQL)) {
+                    // Execute the query
+                    ResultSet rs = pstmt.executeQuery();
+                    // Itera on the results
+                    while (rs.next()) {
+                        System.out.println("Role: " + rs.getString("Role") + ", Code: " + rs.getString("Code"));
+                        model.addElement(rs.getString("Role"));
+//                        model.addElement(rs.getString("Code"));
+                    }
+                }
+            } else {
+                System.out.println("Could not establish a connection to the database");
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred while inserting into the database");
+            e.printStackTrace();
+        }
+        rol.setModel(model);
     }
 }

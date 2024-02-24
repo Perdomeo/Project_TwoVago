@@ -1,6 +1,7 @@
 package view;
 
 import controller.UserController;
+import javax.swing.JOptionPane;
 import models.Role;
 import models.User;
 
@@ -16,6 +17,7 @@ public class UserRegisterView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("User Register");
         userController = new UserController();
+        userController.roleList(cmbRole);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,13 +35,13 @@ public class UserRegisterView extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtDetails = new javax.swing.JTextField();
-        txtRole = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        cmbRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,16 +76,39 @@ public class UserRegisterView extends javax.swing.JFrame {
         jLabel6.setText("Role");
 
         txtId.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         txtName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
 
         txtEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
 
         txtDetails.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        txtRole.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtDetails.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDetailsKeyTyped(evt);
+            }
+        });
 
         btnSave.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSave.setText("Save");
@@ -128,6 +153,9 @@ public class UserRegisterView extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cmbRole.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,9 +183,9 @@ public class UserRegisterView extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(cmbRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(56, 56, 56))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,36 +209,35 @@ public class UserRegisterView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel3))
-                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(15, 15, 15)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1)
+                                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel4))
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel3))
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
-                            .addComponent(txtDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
+                    .addComponent(txtDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnSearch)
@@ -230,7 +257,7 @@ public class UserRegisterView extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String contactDetails = txtDetails.getText();
-        String role = txtRole.getText();
+        String role = cmbRole.getSelectedItem().toString();
         Role auxRole = new Role(role, 0);
         User user = new User(id, userName, email, password, contactDetails, auxRole);
         userController.insert(user);
@@ -253,7 +280,7 @@ public class UserRegisterView extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String contactDetails = txtDetails.getText();
-        String role = txtRole.getText();
+        String role = cmbRole.getSelectedItem().toString();
         Role auxRole = new Role(role, 0);
         User user = new User(id, userName, email, password, contactDetails, auxRole);
         userController.modify(user);
@@ -263,13 +290,60 @@ public class UserRegisterView extends javax.swing.JFrame {
         userController.select();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        boolean retroceso = key == 8;
+        if (!(numeros || retroceso)){
+            JOptionPane.showMessageDialog(null,"Ingrese solo numeros y sin espacio");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        int key = evt.getKeyChar();
+        boolean espacio = key == 32;
+        boolean numeros = key >= 48 && key <= 57;
+        if (espacio || numeros){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        int key = evt.getKeyChar();
+        boolean espacio = key == 32;
+        if (espacio){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        int key = evt.getKeyChar();
+        boolean espacio = key == 32;
+        if (espacio){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void txtDetailsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDetailsKeyTyped
+        int key = evt.getKeyChar();
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        boolean retroceso = key == 8;
+        if (!(minusculas || mayusculas || espacio || retroceso)){
+            JOptionPane.showMessageDialog(null,"Ingrese solo letras");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDetailsKeyTyped
+
     private void clean (){
         txtDetails.setText("");
         txtEmail.setText("");
         txtId.setText("");
         txtName.setText("");
         txtPassword.setText("");
-        txtRole.setText("");
+        cmbRole.setSelectedIndex(0);
     }
     
     public static void main(String args[]) {
@@ -311,6 +385,7 @@ public class UserRegisterView extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -323,6 +398,5 @@ public class UserRegisterView extends javax.swing.JFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtRole;
     // End of variables declaration//GEN-END:variables
 }
