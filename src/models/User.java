@@ -9,15 +9,23 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    private String contactDetails;
+    private int age;
+    private String address;
+    private String phone;
     private Role role;
 
-    public User(int id, String userName, String email, String password, String contactDetails, Role role) {
+    public User(int id) {
+        this.id = id;
+    }
+
+    public User(int id, String userName, String email, String password, int age, String address, String phone, Role role) {
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.contactDetails = contactDetails;
+        this.age = age;
+        this.address = address;
+        this.phone = phone;
         this.role = role;
     }
 
@@ -53,12 +61,28 @@ public class User {
         this.password = password;
     }
 
-    public String getContactDetails() {
-        return contactDetails;
+    public int getAge() {
+        return age;
     }
 
-    public void setContactDetails(String contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Role getRole() {

@@ -26,14 +26,16 @@ public class UserController {
             // Verify if the connection was successful
             if (conn != null) {
                 // Prepares the SQL query to insert data
-                String insertSQL = "INSERT INTO User (Id, UserName, Email, Password, ContactDetails, Role ) VALUES (?, ?, ?, ?, ?, ?)";
+                String insertSQL = "INSERT INTO User (Id, UserName, Email, Password, Age, Address, Phone, Role ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
                     pstmt.setInt(1, user.getId());
                     pstmt.setString(2, user.getUserName());
                     pstmt.setString(3, user.getEmail());
                     pstmt.setString(4, user.getPassword());
-                    pstmt.setString(5, user.getContactDetails());
-                    pstmt.setString(6, user.getRole().getRole());
+                    pstmt.setInt(5, user.getAge());
+                    pstmt.setString(6, user.getAddress());
+                    pstmt.setString(7, user.getPhone());
+                    pstmt.setString(8, user.getRole().getRole());
                     // Execute the query
                     int rowsAffected = pstmt.executeUpdate();
                     // Verify if the insertion was successful
@@ -65,7 +67,8 @@ public class UserController {
                     // Itera on the results
                     while (rs.next()) {
                         System.out.println("Id: " + rs.getInt("Id") + ", UserName: " + rs.getString("UserName") + ", Email: " + rs.getString("Email")
-                        + ", Password: " + rs.getString("Password" ) + ", ContactDetails: " + rs.getString("ContactDetails" ) + ", Role: " + rs.getString("Role" ));
+                        + ", Password: " + rs.getString("Password" ) + ", Age: " + rs.getString("Age" ) +", Address: " + rs.getString("Address" ) 
+                        + ", Phone: " + rs.getString("Phone" ) + ", Role: " + rs.getString("Role" ));
                     }
                 }
             } else {
@@ -120,7 +123,8 @@ public class UserController {
                         System.err.println("does not exist");
                     }else{
                         System.out.println("Id: " + rs.getInt("Id") + ", UserName: " + rs.getString("UserName") + ", Email: " + rs.getString("Email")
-                        + ", Password: " + rs.getString("Password" ) + ", ContactDetails: " + rs.getString("ContactDetails" ) + ", Role: " + rs.getString("Role" ));
+                        + ", Password: " + rs.getString("Password" ) + ", Age: " + rs.getString("Age" ) +", Address: " + rs.getString("Address" ) 
+                        + ", Phone: " + rs.getString("Phone" ) + ", Role: " + rs.getString("Role" ));
                     }
                 }
             } else {
@@ -138,14 +142,16 @@ public class UserController {
             // Verify if the connection was successful
             if (conn != null) {
                 // Prepares the SQL query to insert data
-                String upDateSQL = "UPDATE User SET UserName = ?, Email =  ?, Password = ?, ContactDetails = ?, Role = ? WHERE Id = ?";
+                String upDateSQL = "UPDATE User SET UserName = ?, Email =  ?, Password = ?, Age =  ?, Address = ?, Phone = ?, Role = ? WHERE Id = ?";
                 try (PreparedStatement pstmt = conn.prepareStatement(upDateSQL)){                   
                     pstmt.setString(1, user.getUserName());
                     pstmt.setString(2, user.getEmail());
                     pstmt.setString(3, user.getPassword());
-                    pstmt.setString(4, user.getContactDetails());
-                    pstmt.setString(5, user.getRole().getRole());
-                    pstmt.setInt(6, user.getId());
+                    pstmt.setInt(4, user.getAge());
+                    pstmt.setString(5, user.getAddress());
+                    pstmt.setString(6, user.getPhone());
+                    pstmt.setString(7, user.getRole().getRole());
+                    pstmt.setInt(8, user.getId());
                     // Execute the query
                     int rowsAffected = pstmt.executeUpdate();
                     // Verify if the insertion was successful
@@ -179,7 +185,6 @@ public class UserController {
                     while (rs.next()) {
                         System.out.println("Role: " + rs.getString("Role") + ", Code: " + rs.getString("Code"));
                         model.addElement(rs.getString("Role"));
-//                        model.addElement(rs.getString("Code"));
                     }
                 }
             } else {

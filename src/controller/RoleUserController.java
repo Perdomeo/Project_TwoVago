@@ -5,9 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.scene.control.ComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import models.Role;
 
 /**
